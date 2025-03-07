@@ -26,7 +26,7 @@ export async function deleteUser({ clerkUserId }: { clerkUserId: string }) {
     deletedAt: new Date(),
     email: "deleted@deleted.com",
     name: "deleted user",
-    clerkUserId: "deleted",
+    clerkUserId: `deleted-${clerkUserId}`,
     imageUrl: null
   }).where(eq(UserTable.clerkUserId, clerkUserId)).returning()
 
