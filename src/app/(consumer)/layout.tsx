@@ -26,6 +26,8 @@ function Navbar() {
         </Link>
         <Suspense>
           <SignedIn>
+            <AdminLink />
+
             <Link
               className="hover:bg-accent/10 mr-auto text-lg items-center px-2 flex"
               href="/courses"
@@ -53,4 +55,14 @@ function Navbar() {
       </nav>
     </header>
   );
+}
+
+
+async function AdminLink() {
+  return <Link
+    className="hover:bg-accent/10 mr-auto text-lg items-center px-2 flex"
+    href="/admin"
+  >
+    Admin
+  </Link>
 }

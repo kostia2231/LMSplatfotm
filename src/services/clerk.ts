@@ -1,6 +1,5 @@
 import { UserRole } from "@/drizzle/schema";
-import { clerkClient } from "@clerk/nextjs/server";
-
+import { auth, clerkClient } from "@clerk/nextjs/server";
 
 export async function syncClerkUserMetadata(user: {
   id: string;
@@ -17,5 +16,16 @@ export async function syncClerkUserMetadata(user: {
     });
   } catch (err) {
     console.error("error syncing clerk user metadata", (err as Error).message)
+  }
+}
+
+export async function getCurrentUser() {
+  const { userId, sessionClaims, redirectToSignIn } = await auth()
+
+  return {
+    clerkUserId: userId,
+    userId: sessionClaims?.dbId,
+    role: sessionClaims?.role,
+    redirectToSignIn
   }
 }
